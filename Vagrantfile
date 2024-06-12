@@ -22,8 +22,11 @@ Vagrant.configure("2") do |config|
       ],
     }
   end
-  
-# xDB
+
+  config.ssh.forward_agent = true
+  config.ssh.forward_x11 = true
+
+  # xDB
   config.vm.define "xdb" do |xdb|
     xdb.vm.box = var_box
     xdb.vm.hostname = "xdb"

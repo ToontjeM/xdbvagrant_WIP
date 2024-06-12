@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd ~/xdb
+cd ~/xdbvagrant
 vagrant destroy -f
 
 cd ~/vagrant-projects/OracleDatabase/18.4.0-XE
