@@ -34,7 +34,7 @@ Vagrant.configure("2") do |config|
     xdb.vm.provision "shell", path: "bootstrap_xdb.sh"
 #   nodes.vm.network "forwarded_port", guest: 5444, host: "544#{i}"
     xdb.vm.provider "virtualbox" do |v|
-      v.memory = "1024"
+      v.memory = "4096"
       v.cpus = "2"
       v.name = "xdb"
     end
