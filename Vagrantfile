@@ -26,21 +26,7 @@ Vagrant.configure("2") do |config|
   config.ssh.forward_agent = true
   config.ssh.forward_x11 = true
 
-  # xDB
-  config.vm.define "xdb" do |xdb|
-    xdb.vm.box = var_box
-    xdb.vm.hostname = "xdb"
-    xdb.vm.network "private_network", ip: "192.168.56.10"
-    xdb.vm.provision "shell", path: "bootstrap_xdb.sh"
-#   nodes.vm.network "forwarded_port", guest: 5444, host: "544#{i}"
-    xdb.vm.provider "virtualbox" do |v|
-      v.memory = "4096"
-      v.cpus = "2"
-      v.name = "xdb"
-    end
-  end
-
-  # EPAS
+# EPAS
     config.vm.define "epas" do |epas|
       epas.vm.box = var_box
       epas.vm.hostname = "epas"
@@ -53,6 +39,20 @@ Vagrant.configure("2") do |config|
         v.name = "epas"
       end
     end
+
+# xDB
+  config.vm.define "xdb" do |xdb|
+    xdb.vm.box = var_box
+    xdb.vm.hostname = "xdb"
+    xdb.vm.network "private_network", ip: "192.168.56.10"
+    xdb.vm.provision "shell", path: "bootstrap_xdb.sh"
+#   nodes.vm.network "forwarded_port", guest: 5444, host: "544#{i}"
+    xdb.vm.provider "virtualbox" do |v|
+      v.memory = "4096"
+      v.cpus = "2"
+      v.name = "xdb"
+    end
+  end
 
   config.vm.provision "shell", inline: <<-SHELL 
     systemctl stop firewalld
